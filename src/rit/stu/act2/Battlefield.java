@@ -8,7 +8,7 @@ import java.util.Random;
  * $ java Battlefield #_hostages #_soldiers #_guerillas
  *
  * @author Sean Strout @ RIT CS
- * @author YOUR NAME HERE
+ * @author jake Koerner
  */
 public class Battlefield {
     /** the single instance of the random number generator */

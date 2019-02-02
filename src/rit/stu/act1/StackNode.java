@@ -8,29 +8,53 @@ import rit.cs.Stack;
  * @author Sean Strout @ RIT CS
  * @author Jake Koerner <jrk4731@g.rit.edu>
  */
+import rit.cs.Node;
+import rit.cs.Stack;
+
+
 public class StackNode<T> implements Stack<T> {
 
     /**
      * Create an empty stack.
      */
+    private Node<T> stack;
+
     public StackNode() {
+        this.stack=new Node<>(null, null);
+
     }
 
     @Override
     public boolean empty() {
-        return false;
+        return this.stack.getData()==null;
     }
 
     @Override
     public T pop() {
-        return null;
+        assert !empty();
+        T element=this.stack.getData();
+        if (this.stack.getNext()==null){
+            this.stack.setData(null);
+        }
+        else {
+            this.stack = this.stack.getNext();
+        }
+        return element;
     }
 
     @Override
-    public void push(T element) {}
+    public void push(T element) {
+        if (this.empty()){
+            this.stack.setData(element);
+        }
+        else{
+            this.stack=new Node<>(element, this.stack);
+        }
+    }
 
     @Override
     public T top() {
-        return null;
+        assert !empty();
+        return this.stack.getData();
     }
 }
