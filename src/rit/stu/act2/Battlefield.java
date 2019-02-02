@@ -49,9 +49,10 @@ public class Battlefield {
      */
     public Battlefield(int numHostages, int numSoldiers, int numGuerillas) {
         rng.setSeed(SEED);
-
-
-
+        this.chopper=new Chopper();
+        this.bunker=new Bunker(numSoldiers);
+        this.enemyBase=new EnemyBase(numHostages, numGuerillas);
+        this.predator=new Predator();
     }
 
     /**
@@ -62,9 +63,11 @@ public class Battlefield {
      * Statistics: # hostages remain, # soldiers remain, # guerillas remain, # rescued<br>
      */
     private void printStatistics() {
-
-        // TODO
-
+        System.out.println("Statistics: "+ this.enemyBase.getNumHostages()+
+                " hostage(s) remain, "+this.bunker.getNumSoldiers()+
+                " soldier(s) remain, "+this.enemyBase.getNumGuerillas()+
+                " guerilla(s) reamin, "+this.chopper.getNumRescued()+
+                " rescued.");
     }
 
     /**
@@ -120,9 +123,52 @@ public class Battlefield {
      * 16. Print the statistics one last time.<br>
      */
     private void battle() {
-
-        //TODO
-
+        System.out.println("Get to the choppa!");
+        while(this.enemyBase.getNumHostages()!=0 ||
+                this.bunker.getNumSoldiers()!=0){
+            this.printStatistics();
+            Soldier next_soldier=this.bunker.deployNextSolider();
+            Hostage rescued=this.enemyBase.rescueHostage(next_soldier);
+            if (rescued!=null){
+                System.out.println(rescued+" rescued from enemy base by "+
+                        "soldier "+next_soldier);
+                int predator_die_roll_soldier=nextInt(1, 100);
+                System.out.println(next_soldier+" encounters the predator " +
+                        "who rolls a "+predator_die_roll_soldier+".");
+                if (predator_die_roll_soldier>
+                        Predator.CHANCE_TO_BEAT_SOLDIER){
+                    next_soldier.victory(this.predator);
+                    this.predator.defeat(next_soldier);
+                    this.chopper.boardPassenger(rescued);
+                    this.bunker.fortifySoldiers(next_soldier);
+                }
+                else{
+                    next_soldier.defeat(this.predator);
+                    this.predator.victory(next_soldier);
+                    int predator_die_roll_hostage=nextInt(1, 100);
+                    System.out.println(rescued+" encounters the predator who " +
+                            "rolls a "+predator_die_roll_hostage+".");
+                    if (predator_die_roll_hostage<=
+                            Predator.CHANCE_TO_BEAT_HOSTAGE){
+                        this.predator.victory(rescued);
+                        rescued.defeat(this.predator);
+                    }
+                    else{
+                        this.predator.defeat(rescued);
+                        rescued.victory(this.predator);
+                        this.chopper.boardPassenger(rescued);
+                    }
+                }
+            }
+        }
+        while (this.bunker.hasSoldiers()){
+            Soldier to_board=this.bunker.deployNextSolider();
+            this.chopper.boardPassenger(to_board);
+        }
+        if(!this.chopper.isEmpty()){
+            this.chopper.rescuePassengers();
+        }
+        this.printStatistics();
     }
 
     /**
@@ -139,7 +185,8 @@ public class Battlefield {
      */
     public static void main(String[] args) {
         if (args.length != 3) {
-            System.out.println("Usage: java Battlefield #_hostages #_soldiers #_guerillas");
+            System.out.println("Usage: java Battlefield #_hostages " +
+                    "#_soldiers #_guerillas");
         } else {
             Battlefield field = new Battlefield(
                     Integer.parseInt(args[0]),
