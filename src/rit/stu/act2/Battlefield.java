@@ -124,14 +124,14 @@ public class Battlefield {
      */
     private void battle() {
         System.out.println("Get to the choppa!");
-        while(this.enemyBase.getNumHostages()!=0 ||
+        while(this.enemyBase.getNumHostages()!=0 &&
                 this.bunker.getNumSoldiers()!=0){
             this.printStatistics();
             Soldier next_soldier=this.bunker.deployNextSolider();
             Hostage rescued=this.enemyBase.rescueHostage(next_soldier);
             if (rescued!=null){
                 System.out.println(rescued+" rescued from enemy base by "+
-                        "soldier "+next_soldier);
+                        "soldier "+next_soldier+"!");
                 int predator_die_roll_soldier=nextInt(1, 100);
                 System.out.println(next_soldier+" encounters the predator " +
                         "who rolls a "+predator_die_roll_soldier+".");
