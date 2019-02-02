@@ -6,7 +6,7 @@ import rit.cs.Queue;
  * A queue implementation that uses a Node to represent the structure.
  * @param <T> The type of data the queue will hold
  * @author Sean Strout @ RIT CS
- * @author YOUR NAME HERE
+ * @author Jake Koerner
  */
 public class QueueNode<T> implements Queue<T> {
     /**
