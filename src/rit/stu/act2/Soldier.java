@@ -9,11 +9,11 @@ public class Soldier implements Player {
     }
 
     public void victory(Player player){
-        System.out.println(this+"cries, 'Sieg uber "+player+"!'");
+        System.out.println(this+" cries, 'Sieg uber "+player+"!'");
     }
 
     public void defeat(Player player){
-        System.out.println((this+"cries, 'Besiegt von "+player+"!'"));
+        System.out.println((this+" cries, 'Besiegt von "+player+"!'"));
     }
 
     @Override

@@ -10,11 +10,11 @@ public class Guerilla implements Player{
     }
 
     public void victory(Player player){
-        System.out.println(this+"yells, 'Victoria sobre "+player+"!'");
+        System.out.println(this+" yells, 'Victoria sobre "+player+"!'");
     }
 
     public void defeat(Player player){
-        System.out.println(this+"yells, 'Derrotado por "+player+"!'");
+        System.out.println(this+" yells, 'Derrotado por "+player+"!'");
     }
 
     @Override

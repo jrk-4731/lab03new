@@ -8,7 +8,7 @@ import java.util.Random;
  * $ java Battlefield #_hostages #_soldiers #_guerillas
  *
  * @author Sean Strout @ RIT CS
- * @author jake Koerner
+ * @author Jake Koerner<jrk4731@g.rit.edu>
  */
 public class Battlefield {
     /** the single instance of the random number generator */
@@ -18,7 +18,10 @@ public class Battlefield {
     private final static int SEED = 0;
 
 
-    // TODO: ADD THE REMAINING STATE HERE
+    private Chopper chopper;
+    private EnemyBase enemyBase;
+    private Bunker bunker;
+    private Predator predator;
 
 
     /**
@@ -45,9 +48,9 @@ public class Battlefield {
      * @param numGuerillas number of guerillas in the enemy base at start
      */
     public Battlefield(int numHostages, int numSoldiers, int numGuerillas) {
-        this.rng.setSeed(SEED);
+        rng.setSeed(SEED);
 
-        //TODO: Initialize the other classes here
+
 
     }
 

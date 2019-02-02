@@ -9,10 +9,10 @@ public class Hostage implements Player{
     }
 
     public void victory(Player player){
-        System.out.println(this+"yells, 'Victory over "+ player+"!'");
+        System.out.println(this+" yells, 'Victory over "+ player+"!'");
     }
     public void defeat(Player player){
-        System.out.println(this+"yells, 'Defeated by "+ player + "!'");
+        System.out.println(this+" yells, 'Defeated by "+ player + "!'");
     }
 
     @Override
