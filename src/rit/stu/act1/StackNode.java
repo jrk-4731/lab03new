@@ -1,6 +1,7 @@
 package rit.stu.act1;
 
 import rit.cs.Stack;
+import rit.cs.Node;
 
 /**
  * A stack implementation that uses a Node to represent the structure.
@@ -8,8 +9,6 @@ import rit.cs.Stack;
  * @author Sean Strout @ RIT CS
  * @author Jake Koerner <jrk4731@g.rit.edu>
  */
-import rit.cs.Node;
-import rit.cs.Stack;
 
 
 public class StackNode<T> implements Stack<T> {
