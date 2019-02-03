@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * The main simulation class is run on the command line as:<br>
  * <br>
- * $ java Battlefield #_hostages #_soldiers #_guerillas
+ * $ java Battlefield #_hostages #_soldiers #_guerrillas
  *
  * @author Sean Strout @ RIT CS
  * @author Jake Koerner<jrk4731@g.rit.edu>
@@ -45,13 +45,13 @@ public class Battlefield {
      *
      * @param numHostages number of hostages being held in enemy base at start
      * @param numSoldiers number of soldiers to rescue the hostages at start
-     * @param numGuerillas number of guerillas in the enemy base at start
+     * @param numGuerrillas number of guerillas in the enemy base at start
      */
-    public Battlefield(int numHostages, int numSoldiers, int numGuerillas) {
+    public Battlefield(int numHostages, int numSoldiers, int numGuerrillas) {
         rng.setSeed(SEED);
         this.chopper=new Chopper();
         this.bunker=new Bunker(numSoldiers);
-        this.enemyBase=new EnemyBase(numHostages, numGuerillas);
+        this.enemyBase=new EnemyBase(numHostages, numGuerrillas);
         this.predator=new Predator();
     }
 
@@ -65,7 +65,7 @@ public class Battlefield {
     private void printStatistics() {
         System.out.println("Statistics: "+ this.enemyBase.getNumHostages()+
                 " hostage(s) remain, "+this.bunker.getNumSoldiers()+
-                " soldier(s) remain, "+this.enemyBase.getNumGuerillas()+
+                " soldier(s) remain, "+this.enemyBase.getNamGuerrillas()+
                 " guerilla(s) reamin, "+this.chopper.getNumRescued()+
                 " rescued.");
     }
@@ -176,7 +176,7 @@ public class Battlefield {
      * <br>
      *  1: the number of hostages (a positive integer)<br>
      *  2: the number of soldiers (a positive integer)<br>
-     *  3: the number of guerillas (a positive integer)<br>
+     *  3: the number of guerrillas (a positive integer)<br>
      * <br>
      * If all the arguments are supplied it will create the battle field
      * and then begin the battle.
@@ -186,7 +186,7 @@ public class Battlefield {
     public static void main(String[] args) {
         if (args.length != 3) {
             System.out.println("Usage: java Battlefield #_hostages " +
-                    "#_soldiers #_guerillas");
+                    "#_soldiers #_guerrillas");
         } else {
             Battlefield field = new Battlefield(
                     Integer.parseInt(args[0]),

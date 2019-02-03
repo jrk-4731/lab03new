@@ -10,24 +10,41 @@ import rit.cs.Node;
  * @author Jake Koerner <jrk4731@g.rit.edu>
  */
 public class QueueNode<T> implements Queue<T> {
-    /**
-     * Create an empty queue.
-     */
 
+    /**Using the node class as the underlying structure of the queue*/
     private Node<T> queue;
+
+    /**Using a new node object to keep track of the back of the queue*/
     private Node<T> back;
 
+    /**
+     * Creates empty queue
+     */
     public QueueNode() {
         this.queue=new Node<>(null, null);
         this.back=this.queue;
     }
 
+    /**Following method documentation copied from Queue interface*/
+
+    /**
+     * Get the last element in the queue.
+     * @rit.pre queue must not be empty
+     * @throws AssertionError if queue empty
+     * @return the back element
+     */
     @Override
     public T back() {
         assert !this.empty();
         return this.back.getData();
     }
 
+    /**
+     * Remove and return the front element in the queue.
+     * @rit.pre queue must not be empty
+     * @throws AssertionError if queue empty
+     * @return the front element
+     */
     @Override
     public T dequeue() {
         assert !this.empty();
@@ -41,11 +58,19 @@ public class QueueNode<T> implements Queue<T> {
         return element;
     }
 
+    /**
+     * Check if the queue is currently empty or not.
+     * @return true if empty, false otherwise
+     */
     @Override
     public boolean empty() {
         return this.queue.getData()==null;
     }
 
+    /**
+     * Add a new element to the back of the queue.
+     * @param element The new data element
+     */
     @Override
     public void enqueue(T element) {
         Node to_add=new Node(element, null);
@@ -59,6 +84,12 @@ public class QueueNode<T> implements Queue<T> {
         }
     }
 
+    /**
+     * Get the front element in the queue.
+     * @rit.pre queue must not be empty
+     * @throws AssertionError if queue empty
+     * @return the front element
+     */
     @Override
     public T front() {
         assert !this.empty();
